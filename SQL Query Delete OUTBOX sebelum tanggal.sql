@@ -1,0 +1,1 @@
+DELETE Outbox WHERE tgl_entri < '2018-03-22 00:00'

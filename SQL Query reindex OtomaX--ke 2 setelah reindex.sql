@@ -1,0 +1,2 @@
+EXEC sp_MSforeachtable @command1="ALTER INDEX ALL ON ? REBUILD"
+DBCC SHRINKDATABASE (0, 10)

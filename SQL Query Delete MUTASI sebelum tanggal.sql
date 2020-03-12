@@ -1,0 +1,1 @@
+DELETE from mutasi WHERE tanggal < '2017-06-30 00:00'

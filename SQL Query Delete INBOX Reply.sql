@@ -1,0 +1,1 @@
+DELETE Inbox WHERE status = '40'

@@ -1,0 +1,1 @@
+DELETE from modul where deleted='1'

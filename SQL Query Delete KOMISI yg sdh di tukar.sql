@@ -1,0 +1,1 @@
+DELETE FROM komisi where tukar='1'

@@ -1,0 +1,1 @@
+DELETE FROM sistem_log where tipe = '2'

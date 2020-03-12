@@ -1,0 +1,1 @@
+DELETE from outbox where Convert(char, tgl_entri,101) < Convert(char, getdate(),101) AND penerima not in (select pengirim from pengirim) AND kode_reseller IN (select kode from reseller)

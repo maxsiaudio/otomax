@@ -1,0 +1,1 @@
+DELETE Transaksi WHERE tgl_entri < '2018-06-22 00:00'

@@ -1,0 +1,1 @@
+DELETE from dbo.tiket_deposit WHERE tgl_status < '2018-07-12 23:59'
