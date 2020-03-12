@@ -1,0 +1,6 @@
+insert into dbo.fisik 
+(kode_produk,vn,status,sn,tgl_kadaluarsa)
+values
+('kodeproduk',   kodevoucher   ,'1','keterangan','expireddate'),
+('kodeproduk',   kodevoucher   ,'1','keterangan','expireddate'),
+('kodeproduk',   kodevoucher   ,'1','keterangan','expireddate');
