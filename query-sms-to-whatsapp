@@ -1,0 +1,38 @@
+USE otomax;
+GO
+IF EXISTS(SELECT name FROM sys.triggers WHERE type='TR' AND name='OTP_VIA_WA')
+BEGIN
+  DROP TRIGGER OTP_VIA_WA;
+END
+GO
+CREATE TRIGGER OTP_VIA_WA on [dbo].[outbox]
+AFTER INSERT
+AS
+DECLARE @kode_inbox INT
+DECLARE @tgl_entri datetime
+DECLARE @kode_reseller VARCHAR(100); 
+DECLARE @penerima VARCHAR(100); 
+DECLARE @tipe_penerima VARCHAR(1); 
+DECLARE @pesan VARCHAR(1000); 
+BEGIN
+    SELECT @kode_inbox=i.kode_inbox FROM inserted i; 
+    SELECT @tgl_entri=i.tgl_entri FROM inserted i; 
+    SELECT @kode_reseller=i.kode_reseller FROM inserted i; 
+    SELECT @penerima=i.penerima FROM inserted i; 
+    SELECT @tipe_penerima=i.tipe_penerima FROM inserted i; 
+    SELECT @pesan=i.pesan FROM inserted i;    
+  IF (@pesan like '%Kode OTP%' AND @tipe_penerima='S')
+  BEGIN
+    IF @penerima like '+%'
+    BEGIN
+      set @penerima = SUBSTRING(@penerima,2,100)+'@whatsapp.net'
+        END
+        ELSE 
+        IF @penerima like '08%'
+        BEGIN
+      set @penerima = '62'+SUBSTRING(@penerima,2,100)+'@whatsapp.net'
+    END
+      INSERT INTO [dbo].[outbox](tgl_entri,penerima,tipe_penerima,pesan,status,kode_inbox,kode_reseller,bebas_biaya)
+    VALUES(@tgl_entri,@penerima,'Y',@pesan,0,@kode_inbox,@kode_reseller,1)
+  END
+END
