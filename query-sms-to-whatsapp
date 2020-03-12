@@ -36,3 +36,4 @@ BEGIN
     VALUES(@tgl_entri,@penerima,'Y',@pesan,0,@kode_inbox,@kode_reseller,1)
   END
 END
+
